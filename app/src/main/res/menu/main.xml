@@ -2,8 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_salads"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Ensaladas"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_snacks"
+        android:orderInCategory="100"
+        android:title="Snacks"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_sandwich"
+        android:orderInCategory="100"
+        android:title="Subways"
         app:showAsAction="never" />
 </menu>

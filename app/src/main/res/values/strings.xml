@@ -9,4 +9,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Route Map Activity-->
+    <string name="directions_activity_toast_message">Route is %1$f meters long.</string>
+    <string name="search_view_hint">Escriba el nombre del lugar</string>
+    <string name="route_map_box_title_bottom_sheet">Información del recorrido</string>
+    <string name="image_stops_title">Imagenes de la parada</string>
+    <string name="layout_stop_title">Información de la parada</string>
+    <string name="layout_route_title">Información básica del ruta</string>
+    <string name="route_description_title">Datos de la ruta</string>
+    <string name="travel_distance_title">Distancia del recorrido</string>
+    <string name="time_route_title">Tiempo del recorrido</string>
+    <string name="button_title_save_changes">Guardar información</string>
+    <string name="progrees_dialog_message">Publicando el recorrido  &#8230;</string>
+    <string name="progrees_dialog_firebase_message">Publicando minitura del mapa &#8230;</string>
 </resources>
