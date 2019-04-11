@@ -3,7 +3,7 @@ package hernandez.perez.uca.com.subway_app.Entities;
 import android.widget.ImageView;
 
 public class Food {
-    private ImageView image;
+    private int idImage;
     private Float price;
     private String name;
     private String description;
@@ -11,12 +11,12 @@ public class Food {
 
     public Food() {}
 
-    public ImageView getImage() {
-        return image;
+    public int getIdImage() {
+        return idImage;
     }
 
-    public void setImage(ImageView image) {
-        this.image = image;
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
     }
 
     public Float getPrice() {

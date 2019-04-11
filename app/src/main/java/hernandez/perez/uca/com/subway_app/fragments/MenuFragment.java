@@ -1,7 +1,5 @@
 package hernandez.perez.uca.com.subway_app.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -16,11 +14,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import hernandez.perez.uca.com.subway_app.Adapters.HomeAdapter;
 import hernandez.perez.uca.com.subway_app.Adapters.MenuAdapter;
 import hernandez.perez.uca.com.subway_app.Entities.Food;
-import hernandez.perez.uca.com.subway_app.Entities.Promotion;
 import hernandez.perez.uca.com.subway_app.R;
+import hernandez.perez.uca.com.subway_app.classes.NgFood;
 
 public class MenuFragment extends Fragment {
     View view;
@@ -43,7 +40,7 @@ public class MenuFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        ArrayList<Food> foods = new ArrayList<>();
+        ArrayList<Food> foods =  new NgFood().getFood();
         MenuAdapter adapter = new MenuAdapter(foods);
         recyclerView.setAdapter(adapter);
     }

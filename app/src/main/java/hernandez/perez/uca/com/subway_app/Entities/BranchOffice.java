@@ -1,16 +1,16 @@
 package hernandez.perez.uca.com.subway_app.Entities;
 
-import android.widget.ImageView;
-
-import java.util.Date;
-
 public class BranchOffice {
+    private int id;
     private String name;
     private String schedule;
-    private ImageView image;
+    private int idImage;
     private String Description;
     private String date;
     private String address;
+    private Double latitude;
+    private Double longitude;
+
 
     public BranchOffice() {
 
@@ -32,12 +32,12 @@ public class BranchOffice {
         this.schedule = schedule;
     }
 
-    public ImageView getImage() {
-        return image;
+    public int getIdImage() {
+        return idImage;
     }
 
-    public void setImage(ImageView image) {
-        this.image = image;
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
     }
 
     public String getDescription() {
@@ -62,5 +62,29 @@ public class BranchOffice {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

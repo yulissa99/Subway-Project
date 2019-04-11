@@ -1,13 +1,18 @@
 package hernandez.perez.uca.com.subway_app.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -15,19 +20,36 @@ import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
+import hernandez.perez.uca.com.subway_app.Entities.BranchOffice;
 import hernandez.perez.uca.com.subway_app.R;
+import hernandez.perez.uca.com.subway_app.classes.NgBranchOffice;
 
-public class BranchOfficeFragment extends Fragment {
+public class BranchOfficeFragment extends Fragment implements MapboxMap.OnMapClickListener,
+        MapboxMap.OnMarkerClickListener, OnMapReadyCallback{
+
     View view;
     private MapView mapView;
+    private LinearLayout bottomSheet;
+    private ArrayList<BranchOffice> branchOffices;
+    private MapboxMap.OnMapClickListener context = this;
+    private MapboxMap.OnMarkerClickListener context2 = this;
+
+    private ImageView img;
+    private TextView name;
+    private TextView schedule;
+    private TextView address;
+    private TextView description;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
         Mapbox.getInstance(Objects.requireNonNull(getContext()), "pk.eyJ1IjoiYWRyaWFuYXNhbG9tZTMxIiwiYSI6ImNqdThqd3VscjE4dG4zemxtbTFxYzBlMWEifQ.nlzdrcOzbjBmOetZjcc1RA");
         view = inflater.inflate(R.layout.fragment_branch_office, container, false);
+        bottomSheet = view.findViewById(R.id.bottom_sheet);
+
         return view;
     }
 
@@ -36,45 +58,26 @@ public class BranchOfficeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mapView = view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                MarkerOptions marker = new MarkerOptions();
-                //Primer Subway
-                marker.title("Subway Los Robles");
-                marker.setSnippet("Bocadillos personalizados y ensaladas en mostrador...");
-                marker.position(new LatLng(12.1215892, -86.2601707));
 
-                mapboxMap.addMarker(marker);
-
-                //Segundo Subway
-                marker.title("Subway Metrocentro");
-                marker.setSnippet("Bocadillos personalizados y ensaladas en mostrador...");
-                marker.position(new LatLng(12.1270997, -86.2647094));
-
-                mapboxMap.addMarker(marker);
-
-                //Tercero Subway
-                marker.title("Subway Jean Paul Genie");
-                marker.setSnippet("Bocadillos personalizados y ensaladas en mostrador...");
-                marker.position(new LatLng(12.103247725681612, -86.25848601422257));
-                mapboxMap.addMarker(marker);
-
-                //Cuarto Subway
-                marker.title("Subway Ciudad Jardin");
-                marker.setSnippet("Bocadillos personalizados y ensaladas en mostrador...");
-                marker.position(new LatLng(12.144301854568525, -86.2567075583695));
-                mapboxMap.addMarker(marker);
-
-                //Quinto Subway
-                marker.title("Subway Galerías Santo Domingo");
-                marker.setSnippet("Bocadillos personalizados y ensaladas en mostrador...");
-                marker.position(new LatLng(12.103860129767114, -86.24901614826797));
-                mapboxMap.addMarker(marker);
-
+                NgBranchOffice n = new NgBranchOffice();
+                branchOffices = n.getBranchOffices();
+                for (BranchOffice b : n.getBranchOffices())
+                {
+                    MarkerOptions marker = new MarkerOptions();
+                    //Primer Subway
+                    marker.title(b.getName());
+                    marker.setSnippet(b.getDescription());
+                    marker.position(new LatLng(b.getLatitude(), b.getLongitude()));
+                    mapboxMap.addMarker(marker);
+                }
+                mapboxMap.addOnMapClickListener(context);
+                mapboxMap.setOnMarkerClickListener(context2);
                 mapboxMap.setStyle(Style.MAPBOX_STREETS);
             }
+
         });
     }
 
@@ -118,5 +121,44 @@ public class BranchOfficeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         mapView.onDestroy();
+    }
+
+    @Override
+    public boolean onMapClick(@NonNull LatLng point) {
+        bottomSheet.setVisibility(View.GONE);
+        return false;
+    }
+
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
+        bottomSheet.setVisibility(View.VISIBLE);
+        for (BranchOffice b : branchOffices)
+        {
+            if (b.getName().equals(marker.getTitle()))
+            {
+                img = view.findViewById(R.id.image);
+                name = view.findViewById(R.id.name);
+                schedule = view.findViewById(R.id.schedule);
+                address = view.findViewById(R.id.address);
+                description = view.findViewById(R.id.description);
+
+                img.setImageResource(b.getIdImage());
+                name.setText(b.getName());
+                schedule.setText(b.getSchedule());
+                address.setText(b.getAddress());
+                description.setText(b.getDescription());
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+        mapboxMap.addOnMapClickListener(this);
+        mapboxMap.setOnMarkerClickListener(this);
+    }
+
+    private void defineData(){
+
     }
 }

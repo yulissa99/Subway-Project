@@ -1,9 +1,11 @@
 package hernandez.perez.uca.com.subway_app.Entities;
 
+import android.widget.ImageView;
+
 public class Promotion {
     private int id;
     private String descrption;
-    private String imageURL;
+    private int  idImage;
     private String title;
 
     public String getDescrption() {
@@ -22,12 +24,12 @@ public class Promotion {
         this.id = id;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public int getIdImage() {
+        return idImage;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
     }
 
     public String getTitle() {
