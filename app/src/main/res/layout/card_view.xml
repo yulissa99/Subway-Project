@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/card_menu"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
     android:layout_marginTop="6dp">
@@ -18,9 +19,7 @@
                 android:id="@+id/card_image"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:layout_gravity="center"
-                android:background="@drawable/hola_mundo"
-                android:scaleType="fitXY"/>
+                android:layout_gravity="center"/>
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"

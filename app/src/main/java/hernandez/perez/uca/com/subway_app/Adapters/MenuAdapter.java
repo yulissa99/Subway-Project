@@ -1,12 +1,16 @@
 package hernandez.perez.uca.com.subway_app.Adapters;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -25,12 +29,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         TextView price;
         TextView name;
         TextView description;
+        CardView card;
         public ViewHolder(View view) {
             super(view);
             image = view.findViewById(R.id.card_image);
             price = view.findViewById(R.id.price);
             name = view.findViewById(R.id.name);
             description = view.findViewById(R.id.description);
+            card = view.findViewById(R.id.card_menu);
         }
     }
 
@@ -48,6 +54,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         holder.price.setText("C$ "+foods.get(position).getPrice());
         holder.name.setText(foods.get(position).getName());
         holder.description.setText(foods.get(position).getDescription());
+        Glide.with(holder.card.getContext()).load(foods.get(position).getIdImage()).apply(new RequestOptions().fitCenter()).into(holder.image);
     }
 
     @Override

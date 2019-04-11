@@ -28,19 +28,41 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_menu, container, false);
         initView();
-        setHasOptionsMenu(true);
+            setHasOptionsMenu(true);
         return view;
     }
+
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        this.menu = menu.add("add");
-        this.menu.setIcon(R.drawable.ic_more_vert_black_24dp);
+        inflater.inflate(R.menu.main, menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.action_salads) {
+            recyclerView.removeAllViews();
+            ArrayList<Food> foods =  new NgFood().getSalads();
+            MenuAdapter adapter = new MenuAdapter(foods);
+            recyclerView.setAdapter(adapter);
+
+        } else if (itemId == R.id.action_sandwich) {
+            ArrayList<Food> foods =  new NgFood().getSubway();
+            MenuAdapter adapter = new MenuAdapter(foods);
+            recyclerView.setAdapter(adapter);
+        } else if (itemId == R.id.action_snacks) {
+            ArrayList<Food> foods =  new NgFood().getSnacks();
+            MenuAdapter adapter = new MenuAdapter(foods);
+            recyclerView.setAdapter(adapter);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     private void initView (){
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        ArrayList<Food> foods =  new NgFood().getFood();
+        ArrayList<Food> foods =  new NgFood().getSubway();
         MenuAdapter adapter = new MenuAdapter(foods);
         recyclerView.setAdapter(adapter);
     }

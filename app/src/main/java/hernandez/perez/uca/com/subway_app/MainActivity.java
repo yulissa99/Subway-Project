@@ -48,13 +48,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -71,9 +64,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             case  R.id.nav_branch_office:
                 fragmentClass = BranchOfficeFragment.class;
-                break;
-            case  R.id.nav_account:
-                fragmentClass = AccountFragment.class;
                 break;
             default:
                 break;

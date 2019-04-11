@@ -18,13 +18,13 @@
             android:title="Sucursales" />
     </group>
 
-    <item android:title="Información">
+    <!--<item android:title="Información">
         <menu>
             <item
                 android:id="@+id/nav_account"
                 android:icon="@drawable/ic_about"
                 android:title="Acerca de" />
         </menu>
-    </item>
+    </item>-->
 
 </menu>
