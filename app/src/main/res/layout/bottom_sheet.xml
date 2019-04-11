@@ -26,32 +26,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
             android:layout_marginBottom="@dimen/content_space"
-            android:text="@string/route_map_box_title_bottom_sheet"
+            android:id="@+id/name"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="#000"
             android:textStyle="bold" />
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/imageBB"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_marginBottom="20dp"/>
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,7 +83,16 @@
                 android:layout_marginTop="15dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"/>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Descripción:"
+                android:textStyle="bold"
+                android:textColor="#000"/>
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
@@ -100,5 +103,5 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"/>
         </LinearLayout>
-    </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

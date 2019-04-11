@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
@@ -136,13 +138,13 @@ public class BranchOfficeFragment extends Fragment implements MapboxMap.OnMapCli
         {
             if (b.getName().equals(marker.getTitle()))
             {
-                img = view.findViewById(R.id.image);
+                img = view.findViewById(R.id.imageBB);
                 name = view.findViewById(R.id.name);
                 schedule = view.findViewById(R.id.schedule);
                 address = view.findViewById(R.id.address);
                 description = view.findViewById(R.id.description);
 
-                img.setImageResource(b.getIdImage());
+                Glide.with(this).load(b.getIdImage()).apply(new RequestOptions().centerCrop()).into(img);
                 name.setText(b.getName());
                 schedule.setText(b.getSchedule());
                 address.setText(b.getAddress());
